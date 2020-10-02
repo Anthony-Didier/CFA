@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Société Générale</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        div {
+            width: 20%;
+        }
+        
+        label {
+            display: block;
+        }
+        
+        #info {
+            display: inline;
+            border-radius: 50%;
+            border-width: 1px;
+        }
+        
+        #txtUsername {
+            width: 80%
+        }
+        
+        #mdp {
+            /*display: none;*/
+            margin: 20px;
+        }
+        
+        .nb {
+            height: 40px;
+            width: 40px;
+        }
+        
+        .clearfix {
+            clear: both
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SOCIÉTÉ GÉNÉRALE - C'EST NOUS L'AVENIR ^^</h1>
+    <div>
+        <input id="txtUsername" type="text" placeholder="Saisissez votre code client" maxlength="8" />
+        <button id="reset" type="reset">X</button>
+        <button id="ok1">Valider</button>
+        <div class="clearfix"></div>
+        <div style="display: inline">
+            <input type="checkbox" id="remember" /><label>Se souvenir de moi ?</label><button id="info">i</button>
+        </div>
+        <div id="mdp">
+            <input type="text" id="password" maxlength="6" disabled>
+            <table id="clavier">
+                <tr>
+                    <td><button type="button" class="nb">1</td>
+          <td><button type="button" class="nb">2</td>
+          <td><button type="button" class="nb">3</td>
+          <td><button type="button" class="nb">4</td>
+        </tr>
+        <tr>
+          <td><button type="button" class="nb">5</td>
+          <td><button type="button" class="nb">6</td>
+          <td><button type="button" class="nb">7</td>
+          <td><button type="button" class="nb">8</td>
+
+        </tr>
+        <tr>
+          <td><button type="button" class="nb">9</td>
+          <td><button type="button" class="nb">0</td>
+          <td><button type="button" class="nb"></td>
+          <td><button type="button" class="nb"></td>
+        </tr>
+        <tr>
+          <td><button type="button" class="nb"></td>
+          <td><button type="button" class="nb"></td>
+          <td><button type="button" class="nb"></td>
+          <td><button type="button" class="nb"></td>
+        </tr>
+      </table>
+      <button id="ok2">Valider</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        console.log("Société Générale")
+        var h1 = $("h1");
+        var txtUsername = $("#txtUsername");
+        var reset = $("#reset");
+        var ok1 = $("#ok1");
+        var clavier = $("#clavier");
+        var password = $("#password");
+        var ok2 = $("#ok2");
+        var code = "";
+
+        ok1.attr("disabled", true);
+        ok2.attr("disabled", true);
+
+        $("#txtUsername").keypress(function(e) {
+            var chr = String.fromCharCode(e.which);
+            if ("0123456789".indexOf(chr) < 0)
+                return false;
+        });
+
+        txtUsername.keyup(() => {
+            var test1 = txtUsername.val().length != 8;
+            ok1.attr("disabled", test1)
+        })
+
+        ok1.click((event) => {
+            var target = $(event.target)
+            target.next().show();
+        })
+
+        password.keyup(() => {
+            var test2 = password.val().length != 6;
+            ok2.attr("disabled", test2)
+        })
+
+        clavier.click(function() {
+            var valeur = $(this).html;
+            code = code + valeur;
+            console.log('code : ' + code);
+            password.val(password.val() + '*');
+        });
+    </script>
+</body>
+
+</html>

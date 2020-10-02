@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        article {
+            width: 50%;
+            display: none;
+        }
+        
+        h1 {
+            cursor: pointer;
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JS</h1>
+    <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, porro at. Aut doloribus, cupiditate quod magni voluptates, impedit explicabo omnis sed, vero ipsam quos aliquid laborum est veniam labore tempora!</article>
+
+    <h1>jQuery</h1>
+    <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam accusamus expedita neque harum tempore blanditiis distinctio eaque, repellendus iste doloremque facere qui quas dolore cum sunt iure fuga consequuntur perferendis!</article>
+
+    <input id="txtUsername" type="text" placeholder="username" />
+    <button id="btnTest">Test</button>
+    <div>
+        <ul id="list">
+            <li>Elem1</li>
+            <li>Elem2</li>
+            <li>Elem3</li>
+        </ul>
+    </div>
+    <script>
+        console.log("JS")
+        var h1 = document.getElementsByTagName("h1");
+        h1[1].innerHTML = "JQ";
+
+        var txtUsername = document.getElementById("txtUsername");
+        var btnTest = document.getElementById("btnTest");
+
+        btnTest.disabled = true; // désactive le bouton
+
+        // () => {} correspond à function() {}
+        // addEventListener('le type', function)
+        txtUsername.addEventListener('keyup', () => {
+            if (txtUsername.value.length < 3) {
+                btnTest.disabled = true
+            } else {
+                btnTest.disabled = false
+            }
+        })
+
+        // for(mise en place itérateur i; tant que...; itérer)
+        for (var i = 0; i < h1.length; i++) {
+            h1[i].addEventListener("click", (event) => {
+                // cible l'article suivant
+                var display = event.target.nextElementSibling.style.display;
+                // si display n'est pas défini ou vaut "none"
+                if (!display || display == "none") {
+                    // on affiche l'article suivant dans le DOM
+                    event.target.nextElementSibling.style.display = "block";
+                } else {
+                    // on masque l'article suivant dans le DOM
+                    event.target.nextElementSibling.style.display = "none"
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
