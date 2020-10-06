@@ -2,22 +2,25 @@
 <html lang="en">
 
 <head>
-    <title>Cantinière Test</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantinière Test</title>
 </head>
 
 <body>
-    <h1>Cantinière test</h1>
+    <h1>Cantinière Test</h1>
     <button id="btnUsers">Users</button>
     <button id="btnLogin">Login</button>
-    <div id="log"></div>
+    <div></div>
+
     <script>
-        var btnUsers = document.getElementById("btnUsers");
-        var btnLogin = document.getElementById("btnLogin");
+        var btnUsers = document.getElementById('btnUsers');
+        var btnLogin = document.getElementById('btnLogin');
         var log = btnLogin.nextElementSibling;
 
-        var API = "localhost/lunchtime";
+        var API = 'http://localhost:8080/lunchtime';
+
+        var token = '';
 
         function getUsers() {
             var options = {
@@ -25,22 +28,42 @@
                     "Authorization": token
                 }
             };
+            fetch(API + '/user/findall', options)
+                .then(res => {
+                    if (res.status === 401) {
+                        log.innerText = "Il faut se logguer d'abord"
+                    }
+                    if (res.status === 200) {
+                        return res.json();
+                    }
+                })
+                .then(users => {
+                    log.innerText = users.length + ' users found in database';
+                })
         }
 
         function login() {
             var credentials = {
-                email: "toto@gmail.com",
-                password: "bonjour"
-            }
+                email: 'toto@gmail.com',
+                password: 'bonjour'
+            };
             var options = {
-                method: "POST",
+                method: 'POST',
                 body: JSON.stringify(credentials)
             };
-            fetch(API + "/login", options)
-                .then(res => console.log(res.status))
+            fetch(API + '/login', options)
+                .then(res => {
+                    token = res.headers.get('Authorization');
+                    if (token) {
+                        log.innerText = "Login successful (token received)"
+                    } else {
+                        log.innerText = "Login failed"
+                    }
+                })
         }
 
-        btnLogin.addEventListener("click", login);
+        btnUsers.addEventListener('click', getUsers);
+        btnLogin.addEventListener('click', login);
     </script>
 </body>
 

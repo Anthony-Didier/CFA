@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantiusers</title>
+    <style>
+        .hide {
+            display: none;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        table {
+            margin: auto;
+            border-spacing: 5px;
+            width: 40%;
+        }
+        
+        td,
+        th {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User list</h1>
+    <button id="btnUsers">Users</button>
+    <button id="btnLogin">Login</button><br>
+    <input type="text" id="filterName" placeholder="filter by name" class="hide">
+    <button id="btnSearch" class="hide">Search</button>
+    <button id="btnReset" class="hide">Reset</button>
+    <table id="usersList" class="hide">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>First Name</th>
+                <th>Wallet</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script>
+        var btnUsers = document.getElementById("btnUsers");
+        var btnLogin = document.getElementById("btnLogin");
+        var filterName = document.getElementById("filterName");
+        var btnSearch = document.getElementById("btnSearch");
+        var btnReset = document.getElementById("btnReset");
+        var usersList = document.getElementById("usersList");
+        var log = btnSearch.nextElementSibling;
+
+        var API = "http://localhost:8080/lunchtime";
+
+        var token = "";
+
+        function getUsers() {
+            usersList.children[1].innerHTML = ""
+            filterName.classList.remove('hide');
+            btnSearch.classList.remove('hide');
+            btnReset.classList.remove('hide');
+            usersList.classList.remove('hide');
+            var options = {
+                headers: {
+                    "Authorization": token
+                }
+            };
+            fetch(API + "/user/findall", options)
+                .then(res => {
+                    if (res.status === 401) {
+                        log.innerText = "Il faut se logguer d'abord "
+                    }
+                    if (res.status === 200) {
+                        return res.json();
+                    }
+                })
+                .then(users => {
+                    tabUsers = users;
+                    users.forEach(user => {
+                        updateUserRow(user)
+                    })
+                })
+        }
+
+        function updateUserRow(user) {
+            let row = "<tr><td>" + user.name + "</td><td>" + user.firstname + "</td><td>" + user.wallet.toFixed(2) + " €" + "</td></tr>"
+            usersList.children[1].innerHTML += row
+        }
+
+        function filterByName() {
+            usersList.children[1].innerHTML = ""
+            tabUsers.forEach(user => {
+                var name = user.name;
+                if (name.includes(filterName.value)) {
+                    updateUserRow(user)
+                }
+            })
+        }
+
+        function resetFilter() {
+            usersList.children[1].innerHTML = ""
+
+            tabUsers.forEach(user => {
+                updateUserRow(user)
+            });
+        }
+
+        //        function filtreUsers(e) {
+        //            if (searchName.value.length < 3) {
+        //                return
+        //            } else {
+        //                usersList.children[1].innerHTML = ""
+        //
+        //                tabUsers.forEach(user => {
+        //                    let name = user.name.toLowerCase()
+        //                    if (name.includes(searchName.value.toLowerCase())) {
+        //                        updateUserRow(user)
+        //                    }
+        //                });
+        //            }
+        //        }
+
+        function login() {
+            var credentials = {
+                email: "toto@gmail.com",
+                password: "bonjour"
+            };
+            var options = {
+                method: "POST",
+                body: JSON.stringify(credentials)
+            };
+            fetch(API + "/login", options)
+                .then(res => {
+                    token = res.headers.get("Authorization");
+                    if (token) {
+                        log.innerText = "Login successful (token received)"
+                    } else {
+                        log.innerText = "Login failed"
+                    }
+                })
+        }
+
+        btnUsers.addEventListener("click", getUsers);
+        btnLogin.addEventListener("click", login);
+        btnSearch.addEventListener("click", filterByName);
+        btnReset.addEventListener("click", resetFilter);
+    </script>
+</body>
+
+</html>

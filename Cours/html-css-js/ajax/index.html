@@ -26,13 +26,12 @@
 
         function getTeams() {
             var url = "ajax/teams.json";
-            // fonction () => sans les {} revient à faire () => return
             fetch(url).then(res => res.json())
                 .then(teams => {
                     teams.forEach(team => {
                         section.innerHTML +=
-                            //"<p>" + team.name + " (" + team.yearFounded + ")" < /p>"
-                            "<p>${team.name} => (${team.yearFounded})</p>"
+                            //"<p>${team.name} => (${team.yearFounded})</p>"
+                            "<p>" + team.name + " (" + team.yearFounded + ")</p>"
                     })
                 })
         }
