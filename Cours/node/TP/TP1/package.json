@@ -1,0 +1,12 @@
+{
+    "name": "demo",
+    "version": "1.0.0",
+    "description": "petite demo avec node et typescript",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "tsc index.ts && node index.js"
+    },
+    "author": "Anthony Didier",
+    "license": "ISC"
+}

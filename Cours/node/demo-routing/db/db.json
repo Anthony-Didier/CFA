@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Toto"
+    },
+    {
+      "id": 2,
+      "nom": "Dupont",
+      "prenom": "Tutu"
+    },
+    {
+      "id": 3,
+      "nom": "Dupont",
+      "prenom": "Titi"
+    },
+    {
+      "id": 4,
+      "nom": "Dupont",
+      "prenom": "Tete"
+    },
+    {
+      "id": 5,
+      "nom": "Dupont",
+      "prenom": "Tyty"
+    },
+    {
+      "nom": "Truc",
+      "prenom": "Machin",
+      "id": 6
+    }
+  ]
+}

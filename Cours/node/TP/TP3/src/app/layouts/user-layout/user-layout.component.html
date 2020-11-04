@@ -1,0 +1,4 @@
+<h2>Exo 3</h2>
+<app-data-table [data]="users" [columns]="columns" title="Liste des utilisateurs"></app-data-table>
+<app-data-table [data]="cats" [columns]="catsColumns" title="Liste des chats"></app-data-table>
+<app-user-form (addUser)="this.onFormSubmit($event)"></app-user-form>

@@ -1,0 +1,29 @@
+<div *ngFor="let cat of cats">
+    <table>
+        <tr>
+            <th>
+                <p>Nom : {{cat.name}}</p>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <p>Modifier le nom : <input [(ngModel)]="cat.name"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Couleur : {{cat.color}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Age : {{cat.age}} {{(cat.age==1? "an":"ans")}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="onClick(cat.name)">Action</button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,15 @@
+<p>utilisateur works!</p>
+<p>Il y a {{users.length}} utilisateurs</p>
+
+<p>{{nomDeLaListe}}</p>
+<ol>
+    <li *ngFor="let user of users">{{(user.sexe=="Homme"? "Monsieur":"Madame")}}</li>
+</ol>
+<div *ngIf="users.length > 2">
+    <p>Il y a plusieurs utilisateurs</p>
+</div>
+<img [src]="imgUrl" [alt]="imgAlt">
+<button (click)="onClick()" (mouseenter)="onMouseEnter()">Click Me</button>
+<p>{{message | lowercase}}</p>
+<input type="text" [value]="message" (input)="message = $event.target.value">
+<input type="text" [(ngModel)]="message">

@@ -1,0 +1,13 @@
+<form [formGroup]="membreForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="nom">
+    <div formArrayName="membres">
+        <div *ngFor="let membre of membres.controls; let i = index">
+            <label>
+                Membre {{i+1}} :
+                <input type="text" [formControlName]="i">
+            </label>
+        </div>
+        <button type="button" (click)="ajouterMembre()">Ajouter un membre</button>
+    </div>
+    <button type="submit">OK</button>
+</form>

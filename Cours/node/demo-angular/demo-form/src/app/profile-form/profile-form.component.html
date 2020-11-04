@@ -1,0 +1,27 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <h3>Profil Utilisateur</h3>
+    <label>
+        Nom : 
+        <input type="text" formControlName="nom">
+    </label>
+    <label>
+        Prénom : 
+        <input type="text" formControlName="prenom">
+    </label>
+    <div formGroupName="adresse">
+        <h3>Adresse</h3>
+        <label>
+            Rue : 
+            <input type="text" formControlName="rue">
+        </label>
+        <label>
+            Numéro : 
+            <input type="text" formControlName="numero">
+        </label>
+        <label>
+            Code Postal : 
+            <input type="number" formControlName="codePostal">
+        </label>
+    </div>
+    <button type="submit">Envoyer</button>
+</form>
