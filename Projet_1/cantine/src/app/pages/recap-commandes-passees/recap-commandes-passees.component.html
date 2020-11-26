@@ -1,0 +1,16 @@
+<body>
+    <h3>Récapitulatif des commandes passées</h3>
+    <div class="menus" *ngFor="let commande_passee of commandes_passees">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Commande n°{{commande_passee.id}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Commande {{(commande_passee.status == 0 ? "non validée" : "validée")}}</p>
+                <p>Effectuée par l'utilisateur n°{{commande_passee.iduser}}</p>
+                <p>Le {{commande_passee.creationDate}} à {{commande_passee.creationTime}}</p>
+            </mat-card-content>
+            <button>Valider</button><button>Annuler</button>
+        </mat-card>
+    </div>
+</body>

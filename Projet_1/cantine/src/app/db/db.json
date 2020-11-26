@@ -1,0 +1,19 @@
+{
+    "commandes_passees": [{
+            "id": 1,
+            "status": 0,
+            "iduser": 6,
+            "creation_date": "12/07/2020",
+            "creation_time": "11:04:02",
+            "panier": ["Sandwich poulet"]
+        },
+        {
+            "id": 2,
+            "status": 0,
+            "iduser": 9,
+            "creation_date": "14/07/2020",
+            "creation_time": "11:58:43",
+            "panier": ["Sandwich jambon-beurre"]
+        }
+    ]
+}
