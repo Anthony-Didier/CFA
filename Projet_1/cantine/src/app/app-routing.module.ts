@@ -4,7 +4,8 @@ import { RecapCommandeComponent } from './pages/recap-commande/recap-commande.co
 import { RecapCommandesPasseesComponent } from './pages/recap-commandes-passees/recap-commandes-passees.component';
 
 const routes: Routes = [
-    {path:"recap-commande", component:RecapCommandeComponent},
+    {path:"", component:RecapCommandesPasseesComponent},
+    {path:"recap-commandes/:id", component:RecapCommandeComponent},
     {path:"recap-commandes-passees", component:RecapCommandesPasseesComponent}
 ];
 

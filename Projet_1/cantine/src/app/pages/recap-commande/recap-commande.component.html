@@ -1,5 +1,3 @@
-<p>recap-commande works!</p>
-
 <body>
     <h3>Récapitulatif des commandes passées</h3>
     <div class="menus" *ngFor="let commande of commandes">
@@ -8,9 +6,8 @@
                 <mat-card-title>Commande n°{{commande.id}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>Commande {{(commande.status == 0 ? "non validée" : "validée")}}</p>
-                <p>Effectuée par l'utilisateur n°{{commande.iduser}}</p>
-                <p>Le {{commande.creation_date}} à {{commande.creation_time}}</p>
+                <p>Commande {{(commande.status == 0 ? "non validée" : commande.status == 1 ? "validée" : "annulée")}}</p>
+                <p>Effectuée le {{commande.creationDate | date:'dd/MM/yyyy'}} à {{commande.creationTime}}</p>
             </mat-card-content>
             <button>Valider</button><button>Annuler</button>
         </mat-card>

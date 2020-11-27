@@ -6,11 +6,12 @@
                 <mat-card-title>Commande n°{{commande_passee.id}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>Commande {{(commande_passee.status == 0 ? "non validée" : "validée")}}</p>
-                <p>Effectuée par l'utilisateur n°{{commande_passee.iduser}}</p>
-                <p>Le {{commande_passee.creationDate}} à {{commande_passee.creationTime}}</p>
+                <p>Commande {{(commande_passee.status == 0 ? "non validée" : commande_passee.status == 1 ? "validée" : "annulée")}}</p>
+                <p>Effectuée par l'utilisateur n°{{commande_passee.user.id}}</p>
+                <p>({{commande_passee.user.firstname}} {{commande_passee.user.name | uppercase}})</p>
+                <p>le {{commande_passee.creationDate | date:'dd/MM/yyyy'}} à {{commande_passee.creationTime}}</p>
             </mat-card-content>
-            <button>Valider</button><button>Annuler</button>
+            <button>Valider</button><button (click)="cancelOrder(commande_passee.status)">Annuler</button>
         </mat-card>
     </div>
 </body>

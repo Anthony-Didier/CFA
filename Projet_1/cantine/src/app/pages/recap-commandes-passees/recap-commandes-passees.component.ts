@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CantiniereServiceService } from '../../../service/cantiniere-service.service';
-import { CommandeRecap } from '../../models/CommandeRecap';
+import { CantiniereService } from '../../../service/cantiniere.service';
+import { Commande } from '../../models/Commande';
 
 @Component({
   selector: 'app-recap-commandes-passees',
@@ -9,13 +9,17 @@ import { CommandeRecap } from '../../models/CommandeRecap';
 })
 export class RecapCommandesPasseesComponent implements OnInit {
     title = 'angular-cantinere';
-    commandes_passees: CommandeRecap[] = [];
+    commandes_passees: Commande[] = [];
 
-  constructor(private cantiniere_api : CantiniereServiceService) {
+  constructor(private cantiniere_api : CantiniereService) {
     this.cantiniere_api.findAll().subscribe(data => {
       this.commandes_passees = data;
       console.log(this.commandes_passees);
     })
+  }
+
+  cancelOrder(commandes_passees: Commande) {
+    this.cantiniere_api.update(commandes_passees);
   }
 
   ngOnInit(): void {

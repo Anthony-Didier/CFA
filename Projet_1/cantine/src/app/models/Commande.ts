@@ -1,8 +1,9 @@
+import { User } from "./User";
+
 export class Commande {
     id: number;
     status: number;
-    iduser: number;
-    creation_date: string;
-    creation_time: string;
-    panier : Array<any>;
+    user: User;
+    creationDate: string;
+    creationTime: string;
 }
