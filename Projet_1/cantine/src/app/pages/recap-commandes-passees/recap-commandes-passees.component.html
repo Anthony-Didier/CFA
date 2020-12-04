@@ -11,7 +11,7 @@
                 <p>({{commande_passee.user.firstname}} {{commande_passee.user.name | uppercase}})</p>
                 <p>le {{commande_passee.creationDate | date:'dd/MM/yyyy'}} à {{commande_passee.creationTime}}</p>
             </mat-card-content>
-            <button>Valider</button><button (click)="cancelOrder(commande_passee.id)">Annuler</button>
+            <button>Valider</button><button [disabled]="commande_passee.status == 2" (click)="cancelOrder(commande_passee.id)">Annuler</button>
         </mat-card>
     </div>
 </body>
