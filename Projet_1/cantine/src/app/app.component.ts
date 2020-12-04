@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CantiniereServiceService } from '../service/cantiniere-service.service'
+import { CantiniereService } from '../service/cantiniere.service'
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'angular-cantinere';
 //  listeMenus = [];
 //
-//  constructor(private cantiniere_api : CantiniereServiceService){ }
+//  constructor(private cantiniere_api : CantiniereService){ }
 //
 //  ngOnInit(){
 //    this.getMenus();

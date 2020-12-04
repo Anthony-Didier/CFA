@@ -21,7 +21,7 @@ export class CantiniereService {
     return this.http.get<Commande[]>(this.api_url + 'order/findallforuser/' + id);
   }
 
-  update(commande: Commande) {
-    return this.http.put(this.api_url + 'order/findall', commande.status = 2);
+  cancel(id: number) {
+    return this.http.patch(this.api_url + 'order/cancel/' + id, {});
   }
 }

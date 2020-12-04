@@ -1,5 +1,7 @@
 {
-  "name": "TP3",
-  "integrations": {},
+  "name": "vrai-faux-app",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

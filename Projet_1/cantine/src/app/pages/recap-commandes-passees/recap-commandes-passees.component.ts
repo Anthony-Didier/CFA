@@ -18,8 +18,10 @@ export class RecapCommandesPasseesComponent implements OnInit {
     })
   }
 
-  cancelOrder(commandes_passees: Commande) {
-    this.cantiniere_api.update(commandes_passees);
+  cancelOrder(id: number) {
+    
+    this.cantiniere_api.cancel(id).subscribe(() => window.location.reload())
+    // console.log("Commande n°" + id + " annulée !");
   }
 
   ngOnInit(): void {
