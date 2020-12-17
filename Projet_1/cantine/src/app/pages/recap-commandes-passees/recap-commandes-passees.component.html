@@ -7,7 +7,7 @@
             </mat-card-header>
             <mat-card-content>
                 <p>Commande {{(commande_passee.status == 0 ? "créée" : commande_passee.status == 1 ? "validée" : "annulée")}}</p>
-                <p>Commande de l'utilisateur n°{{commande_passee.user.id}}</p>
+                <p>Effectuée par l'utilisateur n°{{commande_passee.user.id}}</p>
                 <p>({{commande_passee.user.firstname}} {{commande_passee.user.name | uppercase}})</p>
                 <p>le {{commande_passee.creationDate | date:'dd/MM/yyyy'}} à {{commande_passee.creationTime}}</p>
             </mat-card-content>
